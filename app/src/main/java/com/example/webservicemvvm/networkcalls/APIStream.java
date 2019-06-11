@@ -1,5 +1,6 @@
 package com.example.webservicemvvm.networkcalls;
 
+import com.example.webservicemvvm.model.Coffe;
 import com.example.webservicemvvm.model.User;
 
 import java.util.List;
@@ -17,5 +18,13 @@ public class APIStream {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .timeout(20, TimeUnit.SECONDS) ;
+    }
+
+    public static Observable<List<Coffe>> getCoffeList(){
+        APICall apiCall = APICall.retrofit2.create(APICall.class) ;
+        return  apiCall.getCoffeList()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .timeout(20,TimeUnit.SECONDS) ;
     }
 }

@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -15,20 +16,20 @@ import com.bumptech.glide.RequestManager;
 import com.example.webservicemvvm.R;
 import com.example.webservicemvvm.model.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ListViewAdapter extends ArrayAdapter<String> {
     Activity  context ;
-    List<User> users ;
+
     private String[] subtitle = null;
     private String[] imgid = null ;
     private String[] title = null ;
-    public ListViewAdapter(Activity context, List<User> users) {
-        super(context, R.layout.list_item, ExtractUsers.getNames(users));
-        this.users = users ;
-        this.title = ExtractUsers.getNames(users) ;
-        this.subtitle=ExtractUsers.getDescription(users);
-        this.imgid=ExtractUsers.getPics(users);
+    public ListViewAdapter(Activity context, List<Object> list) {
+        super(context, R.layout.list_item, ExtractUsers.getNames(list));
+        this.title = ExtractUsers.getNames(list) ;
+        this.subtitle=ExtractUsers.getDescription(list);
+        this.imgid=ExtractUsers.getPics(list);
         this.context=context;
     }
 

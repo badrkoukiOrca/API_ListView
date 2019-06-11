@@ -2,23 +2,15 @@ package com.example.webservicemvvm.views;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
+import android.app.Activity;
 import android.os.Bundle;
-import android.provider.Contacts;
-import android.util.Log;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.example.webservicemvvm.R;
-import com.example.webservicemvvm.model.User;
-import com.example.webservicemvvm.networkcalls.APIStream;
 import com.example.webservicemvvm.networkcalls.DataRetreive;
-import com.example.webservicemvvm.viewmodel.UIController;
 
-import java.util.List;
-
-import io.reactivex.disposables.Disposable;
-import io.reactivex.observers.DisposableObserver;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,6 +20,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         list = findViewById(R.id.listView) ;
-        DataRetreive.executeHttpRequestWithRetrofit(this,list) ;
+
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask()
+        {
+            @Override
+            public void run()
+            {
+                DataRetreive.GetCoffeList(MainActivity.this,list);
+            }
+        }, 0, 2000);
     }
 }

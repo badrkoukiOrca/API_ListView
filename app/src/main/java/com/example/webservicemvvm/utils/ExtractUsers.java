@@ -1,31 +1,70 @@
 package com.example.webservicemvvm.utils;
 
+import com.example.webservicemvvm.model.Coffe;
 import com.example.webservicemvvm.model.User;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ExtractUsers {
 
-    public static String[] getNames(List<User> users) {
-        String[]  names = new String[users.size()] ;
-        for(int i=0 ; i<users.size() ; i++){
-            names[i] = users.get(i).getLogin() ;
+    public static String[] getNames(List<Object> list) {
+
+        if (list.get(0).getClass().equals(User.class)){
+
+            String[]  names = new String[list.size()] ;
+            for(int i=0 ; i<list.size() ; i++){
+               User user  = (User)list.get(i);
+               names[i] = user.getLogin() ;
+            }
+            return  names ;
         }
-        return  names ;
+        else{
+            String[] names = new String[list.size()] ;
+            for (int i = 0 ;i<list.size();i++){
+                Coffe coffe = (Coffe) list.get(i) ;
+                names[i] = coffe.getNom() ;
+            }
+            return  names ;
+        }
     }
-    public  static String[] getDescription(List<User> users){
-        String[]  desc = new String[users.size()] ;
-        for(int i=0 ; i<users.size() ; i++){
-            desc[i] = users.get(i).getType() ;
+    public  static String[] getDescription(List<Object> list){
+
+        if(list.get(0).getClass().equals(User.class)){
+            String[]  desc = new String[list.size()] ;
+            for(int i=0 ; i<list.size() ; i++){
+                User user  = (User)list.get(i);
+                desc[i] = user.getType() ;
+            }
+            return  desc ;
+        }else{
+            String[]  desc = new String[list.size()] ;
+            for(int i=0 ; i<list.size() ; i++){
+                Coffe  coffee  = (Coffe) list.get(i);
+                desc[i] = coffee.getAdresse() ;
+            }
+            return  desc ;
         }
-        return  desc ;
     }
 
-    public  static String[] getPics(List<User> users){
-        String[]  pictures = new String[users.size()] ;
-        for(int i=0 ; i<users.size() ; i++){
-            pictures[i] = users.get(i).getAvatar() ;
+    public  static String[] getPics(List<Object> list){
+
+        if(list.get(0).getClass().equals(User.class)){
+            String[] pics = new String[list.size()] ;
+            for(int i=0;i<list.size();i++){
+                User user = (User) list.get(i) ;
+                pics[i] = user.getAvatar() ;
+            }
+            return  pics ;
+        }else{
+            String[] pics = new String[list.size()] ;
+            for(int i=0;i<list.size();i++){
+                Coffe coffe = (Coffe) list.get(i) ;
+                pics[i] = coffe.getImage();
+            }
+            return  pics ;
         }
-        return  pictures ;
+
+
     }
 }
