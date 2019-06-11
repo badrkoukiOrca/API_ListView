@@ -48,7 +48,6 @@ public class ExtractUsers {
     }
 
     public  static String[] getPics(List<Object> list){
-
         if(list.get(0).getClass().equals(User.class)){
             String[] pics = new String[list.size()] ;
             for(int i=0;i<list.size();i++){
@@ -64,7 +63,5 @@ public class ExtractUsers {
             }
             return  pics ;
         }
-
-
     }
 }
